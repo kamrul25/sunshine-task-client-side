@@ -94,11 +94,11 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {user ? (
-          <Link onClick={handleLogOut} className="btn btn-error text-2xl">
+          <Link onClick={handleLogOut} className="btn btn-error text-xs lg:text-2xl">
             Sing Out
           </Link>
         ) : (
-          <Link to="/singIn" className="btn btn-active btn-secondary text-2xl">
+          <Link to="/singIn" className="btn btn-active btn-secondary text-xs lg:text-2xl">
             Sing In
           </Link>
         )}

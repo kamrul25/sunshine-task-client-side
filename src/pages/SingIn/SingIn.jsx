@@ -65,7 +65,7 @@ const SingIn = () => {
         <title>Job Portal | Sign In</title>
       </Helmet>
 
-      <h1 className="text-2xl md:text-5xl  text-primary-content font-bold mt-12 ">
+      <h1 className="text-2xl md:text-5xl  text-primary-content font-bold mt-12">
         Welcome Back. Sing In now!
       </h1>
 
