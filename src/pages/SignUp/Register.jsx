@@ -1,29 +1,50 @@
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Register = () => {
-    const [showPassword, setShowPassword] = useState(false);
-    const navigate = useNavigate();
-    const location = useLocation();
-    const from = location?.state?.from?.pathname || "/";
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      const email = e.target.email.value;
-      const password = e.target.password.value;
-      console.log(email, password);
-    };
+  const { createUser } = useContext(AuthContext);
+  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
 
-    return (
-        <div>
-            <Helmet>
-                <title>Job Portal | Register</title>
-            </Helmet>
+    createUser(email, password)
+      .then(() => {
+        Swal.fire({
+          title: "Success!",
+          text: `Register successfully! `,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "Error!",
+          text: `Register unsuccessful. Read the message ${error.message}`,
+          icon: "error",
+          confirmButtonText: "Try Again",
+        });
+      });
+  };
 
-            <h1 className="text-2xl md:text-5xl  text-primary-content font-bold mt-12 mb-10">
-       You Are Welcome. Register now!
+  return (
+    <div>
+      <Helmet>
+        <title>Job Portal | Register</title>
+      </Helmet>
+
+      <h1 className="text-2xl md:text-5xl  text-primary-content font-bold mt-12 mb-10">
+        You Are Welcome. Register now!
       </h1>
 
       <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl mx-auto relative">
@@ -55,17 +76,14 @@ const Register = () => {
           <div className="form-control mt-6">
             <input
               type="submit"
-              value="Sign In"
+              value="Register"
               className="btn btn-primary text-primary-content"
             />
           </div>
-        </form>       
+        </form>
         <p className="ml-8 -mt-5 mb-2 text-lg ">
-          Haven An Account. Please{" "}
-          <Link
-            to="/singIn"
-            className="underline text-primary-content"
-          >
+          Already Registered. Please{" "}
+          <Link to="/singIn" className="underline text-primary-content">
             Sing In
           </Link>
         </p>
@@ -80,8 +98,8 @@ const Register = () => {
           </button>
         )}
       </div>
-        </div>
-    );
+    </div>
+  );
 };
 
 export default Register;

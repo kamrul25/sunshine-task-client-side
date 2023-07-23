@@ -1,10 +1,13 @@
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const SingIn = () => {
+  const { login, loginByGoogle } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -13,10 +16,49 @@ const SingIn = () => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(email, password);
+
+    login(email, password)
+      .then(() => {
+        Swal.fire({
+          title: "Success!",
+          text: `Sing In successfully! `,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "Error!",
+          text: `Sing In unsuccessful. Read the message ${error.message}`,
+          icon: "error",
+          confirmButtonText: "Try Again",
+        });
+      });
   };
 
-  const handleGoogle = () => {};
+  const handleGoogle = () => {
+    loginByGoogle()
+      .then(() => {
+        Swal.fire({
+          title: "Success!",
+          text: `Sing In successfully by Google! `,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "Error!",
+          text: `Sing In unsuccessful. Read the message ${error.message}`,
+          icon: "error",
+          confirmButtonText: "Try Again",
+        });
+      });
+  };
   return (
     <div>
       <Helmet>
@@ -24,7 +66,7 @@ const SingIn = () => {
       </Helmet>
 
       <h1 className="text-2xl md:text-5xl  text-primary-content font-bold mt-12 ">
-       Welcome Back. Sing In now!
+        Welcome Back. Sing In now!
       </h1>
 
       <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl mx-auto relative">
@@ -70,11 +112,8 @@ const SingIn = () => {
           </button>
         </div>
         <p className="absolute left-10 top-[62%] text-lg ">
-          Haven't An Account. Please{" "}
-          <Link
-            to="/register"
-            className="underline text-primary-content"
-          >
+          Have not An Account. Please{" "}
+          <Link to="/register" className="underline text-primary-content">
             Create
           </Link>
         </p>
