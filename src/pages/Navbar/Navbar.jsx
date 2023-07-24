@@ -98,7 +98,7 @@ const Navbar = () => {
             Sing Out
           </Link>
         ) : (
-          <Link to="/singIn" className="btn btn-active btn-secondary text-xs lg:text-2xl">
+          <Link to="/singIn" className="btn btn-active btn-success text-xs lg:text-2xl">
             Sing In
           </Link>
         )}
