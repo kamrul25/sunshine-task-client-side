@@ -43,6 +43,7 @@ const TopBD = () => {
       <dialog id="my_modal_4" className="modal text-primary-content">
         <form method="dialog" className="modal-box">
           <h3 className="font-bold text-lg">{data.name}</h3>
+          <img src={data.logo} alt="" />
           <p className="py-4">{data.description}</p>
           <p className="py-4">Services</p>
           <p className="py-4">{services}</p>

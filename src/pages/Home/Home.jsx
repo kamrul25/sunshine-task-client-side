@@ -7,7 +7,7 @@ import TopWorld from "./Sections/TopITComapnies/TopWorld";
 
 const Home = () => {
     return (
-        <div className="space-y-5">
+        <div className="space-y-16">
             <Banner></Banner>
             {/* JObs Section */}
             <TopBD></TopBD>
