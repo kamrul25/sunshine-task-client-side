@@ -27,7 +27,7 @@ const TopWorld = () => {
             className="card bg-primary text-primary-content shadow-xl border border-primary"
           >
             <div className="card-body">
-              <h2 className="card-title">Name: {company.name}</h2>
+              <h2 className="card-title">{company.name}</h2>
               <div onClick={() => setData(company)}>
                 <button
                   className="btn btn-success"
