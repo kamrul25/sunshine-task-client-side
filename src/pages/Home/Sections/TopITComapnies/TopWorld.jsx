@@ -13,8 +13,8 @@ const TopWorld = () => {
     },
   });
 
-  const [data, setData] = useState("")
-  const {services} = data;
+  const [data, setData] = useState("");
+  const { services } = data;
   return (
     <div className="space-y-8">
       <h1 className="text-xl md:text-5xl text-primary-content font-bold text-center">
@@ -29,12 +29,12 @@ const TopWorld = () => {
             <div className="card-body">
               <h2 className="card-title">Name: {company.name}</h2>
               <div onClick={() => setData(company)}>
-              <button
-                className="btn btn-success"
-                onClick={() => window.my_modal_1.showModal()}
-              >
-                View Details
-              </button>
+                <button
+                  className="btn btn-success"
+                  onClick={() => window.my_modal_1.showModal()}
+                >
+                  View Details
+                </button>
               </div>
             </div>
           </div>
@@ -44,17 +44,21 @@ const TopWorld = () => {
       {/* Open the modal using ID.showModal() method */}
       <dialog id="my_modal_1" className="modal text-primary-content">
         <form method="dialog" className="modal-box">
-          <h3 className="font-bold text-lg">{data.name}</h3>
-          <p className="py-4">
-           {data.description}
-          </p>
+          <div className="flex justify-between items-center gap-2">
+            <h3 className="font-bold text-lg">{data.name}</h3>
+            <img src={data.logo} alt="" className="w-[100px] h-[100px]" />
+          </div>
+          <p className="py-4">{data.description}</p>
           <p className="py-4">Services</p>
-          <p className="py-4">
-           {services}
-          </p>
+          <p className="py-4">{services}</p>
           <div className="modal-action">
             {/* if there is a button in form, it will close the modal */}
-            <button className="btn btn-error text-primary-content" onClick={()=>setData("")}>Close</button>
+            <button
+              className="btn btn-error text-primary-content"
+              onClick={() => setData("")}
+            >
+              Close
+            </button>
           </div>
         </form>
       </dialog>

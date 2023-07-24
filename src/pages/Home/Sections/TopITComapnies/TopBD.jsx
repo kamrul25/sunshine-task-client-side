@@ -42,8 +42,10 @@ const TopBD = () => {
       {/* Open the modal using ID.showModal() method */}
       <dialog id="my_modal_4" className="modal text-primary-content">
         <form method="dialog" className="modal-box">
-          <h3 className="font-bold text-lg">{data.name}</h3>
-          <img src={data.logo} alt="" />
+          <div className="flex justify-between items-center gap-2">
+            <h3 className="font-bold text-lg">{data.name}</h3>
+            <img src={data.logo} alt="" className="w-[100px] h-[100px]" />
+          </div>
           <p className="py-4">{data.description}</p>
           <p className="py-4">Services</p>
           <p className="py-4">{services}</p>
