@@ -45,13 +45,12 @@ const MyProfile = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-1/2 lg:w-10/12 mx-auto">
       <div className="card space-y-4" data-aos="fade-down-right" data-aos-duration="2000">
-        <div className="card-body">
-          <h1 className="text-xl md:text-5xl text-primary-content font-bold text-center">
+          <h1 className="text-xl md:text-3xl text-primary-content font-bold text-center">
             About Me
           </h1>
-        </div>
+        
         <video controls="controls" className="w-full  rounded-xl  ">
-          <source src="KamrulHasanJamanIntroduceVideo.mp4" type="video/mp4" />
+          <source src="KamrulVideoResume.mp4" type="video/mp4" />
         </video>
       </div>
       <div
